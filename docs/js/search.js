@@ -169,16 +169,16 @@ class WorkflowSearch {
   }
 
   showFeaturedWorkflows() {
-    // Show recent workflows or popular ones when no search
-    const featured = this.searchIndex.workflows
-      .filter((w) => w.integrations.length > 0)
-      .slice(0, this.resultsPerPage);
+    // Show all workflows with integrations
+    const featured = this.searchIndex.workflows.filter(
+      (w) => w.integrations.length > 0
+    );
 
     this.currentResults = featured;
     this.displayedCount = 0;
     this.displayResults(true);
     this.resultsTitle.textContent = "Featured Workflows";
-    this.resultsCount.textContent = "";
+    this.resultsCount.textContent = `${this.currentResults.length} workflows available`;
   }
 
   displayResults(reset = false) {
