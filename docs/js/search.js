@@ -8,7 +8,7 @@ class WorkflowSearch {
     this.searchIndex = null;
     this.currentResults = [];
     this.displayedCount = 0;
-    this.resultsPerPage = 20;
+    this.resultsPerPage = 21;
     this.isLoading = false;
 
     // DOM elements
@@ -409,7 +409,7 @@ class WorkflowSearch {
     }
 
     this.resultsTitle.textContent = title;
-    this.resultsCount.textContent = `${this.currentResults.length} workflows found`;
+    this.resultsCount.textContent = `${this.currentResults.length} n8n workflows available`;
   }
 
   loadMoreResults() {
