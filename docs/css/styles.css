@@ -53,7 +53,7 @@ body {
 
 /* Header */
 .header {
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background: #2c3e50;
   color: white;
   padding: 2rem 0;
   text-align: center;
@@ -69,8 +69,15 @@ body {
   gap: 0.5rem;
 }
 
-.logo-emoji {
+.logo-image {
+  height: 60px;
+  width: auto;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.logo-icon {
   font-size: 3rem;
+  color: #ffd700;
 }
 
 .tagline {
@@ -131,6 +138,7 @@ body {
 
 .search-icon {
   font-size: 1.25rem;
+  color: white;
 }
 
 /* Filters */
@@ -376,6 +384,7 @@ body {
 .no-results-icon {
   font-size: 4rem;
   margin-bottom: 1rem;
+  color: var(--text-muted);
 }
 
 .no-results h3 {
@@ -405,12 +414,96 @@ body {
 
 /* Footer */
 .footer {
-  background: var(--surface);
-  border-top: 1px solid var(--border);
-  padding: 2rem 0;
-  text-align: center;
-  color: var(--text-muted);
+  background: #1a202c;
+  color: #a0aec0;
+  padding: 3rem 0 1.5rem;
+  margin-top: 4rem;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #2d3748;
+}
+
+.footer-section {
+  text-align: left;
+}
+
+.footer-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-title i {
+  color: #ffd700;
+}
+
+.footer-description {
   font-size: 0.875rem;
+  line-height: 1.6;
+  color: #a0aec0;
+}
+
+.footer-heading {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-list li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-list a {
+  color: #a0aec0;
+  text-decoration: none;
+  font-size: 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition);
+}
+
+.footer-list a:hover {
+  color: #fff;
+  transform: translateX(3px);
+}
+
+.footer-list a i {
+  font-size: 0.875rem;
+  width: 16px;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.footer-bottom p {
+  font-size: 0.875rem;
+  color: #a0aec0;
+  margin: 0.5rem 0;
+}
+
+.footer-meta {
+  font-size: 0.75rem !important;
+  color: #718096 !important;
 }
 
 .footer-links {
@@ -450,7 +543,11 @@ body {
     font-size: 2rem;
   }
 
-  .logo-emoji {
+  .logo-image {
+    height: 45px;
+  }
+
+  .logo-icon {
     font-size: 2.5rem;
   }
 
@@ -478,6 +575,15 @@ body {
 
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .footer-section {
+    text-align: center;
   }
 }
 

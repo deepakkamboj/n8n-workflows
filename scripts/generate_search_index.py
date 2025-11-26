@@ -4,6 +4,7 @@ Generate Static Search Index for GitHub Pages
 Creates a lightweight JSON index for client-side search functionality.
 """
 
+from workflow_db import WorkflowDatabase
 import json
 import os
 import sys
@@ -12,8 +13,6 @@ from typing import Dict, List, Any
 
 # Add the parent directory to path for imports
 sys.path.append(str(Path(__file__).parent.parent))
-
-from workflow_db import WorkflowDatabase
 
 
 def generate_static_search_index(db_path: str, output_dir: str) -> Dict[str, Any]:
@@ -47,7 +46,8 @@ def generate_static_search_index(db_path: str, output_dir: str) -> Dict[str, Any
         ]).lower()
 
         # Use existing category from create_categories.py system, fallback to integration-based
-        category = get_workflow_category(workflow['filename'], existing_categories, workflow['integrations'], categories)
+        category = get_workflow_category(
+            workflow['filename'], existing_categories, workflow['integrations'], categories)
 
         search_workflow = {
             'id': workflow['filename'].replace('.json', ''),
@@ -62,7 +62,7 @@ def generate_static_search_index(db_path: str, output_dir: str) -> Dict[str, Any
             'tags': workflow['tags'],
             'category': category,
             'searchable_text': searchable_text,
-            'download_url': f"https://raw.githubusercontent.com/Zie619/n8n-workflows/main/workflows/{extract_folder_from_filename(workflow['filename'])}/{workflow['filename']}"
+            'download_url': f"https://raw.githubusercontent.com/deepakkamboj/n8n-workflows/main/workflows/{extract_folder_from_filename(workflow['filename'])}/{workflow['filename']}"
         }
         search_workflows.append(search_workflow)
 
@@ -107,7 +107,7 @@ def load_existing_categories() -> Dict[str, str]:
 
 
 def get_workflow_category(filename: str, existing_categories: Dict[str, str],
-                         integrations: List[str], service_categories: Dict[str, List[str]]) -> str:
+                          integrations: List[str], service_categories: Dict[str, List[str]]) -> str:
     """Get category for workflow, preferring existing assignment over integration-based."""
 
     # First priority: Use existing category from create_categories.py system
@@ -180,7 +180,8 @@ def get_popular_integrations(workflows: List[Dict]) -> List[Dict[str, Any]]:
 
     for workflow in workflows:
         for integration in workflow['integrations']:
-            integration_counts[integration] = integration_counts.get(integration, 0) + 1
+            integration_counts[integration] = integration_counts.get(
+                integration, 0) + 1
 
     # Sort by count and take top 50
     sorted_integrations = sorted(
@@ -225,7 +226,8 @@ def save_search_index(search_index: Dict[str, Any], output_dir: str):
 
     # Save integrations only
     with open(os.path.join(output_dir, 'integrations.json'), 'w', encoding='utf-8') as f:
-        json.dump(search_index['integrations'], f, indent=2, ensure_ascii=False)
+        json.dump(search_index['integrations'],
+                  f, indent=2, ensure_ascii=False)
 
     print(f"Search index generated successfully:")
     print(f"   {search_index['stats']['total_workflows']} workflows indexed")
